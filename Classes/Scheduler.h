@@ -9,11 +9,13 @@ using namespace std;
 
 class Scheduler
 {
+    // Array of Processes
     Process **readyQueue;
 
 public:
     Scheduler(Process_Creator &PC)
     {
+        // Allocating Memory to the Processes Array
         readyQueue = (Process **)malloc(PC.noOfProcesses * sizeof(Process *));
     }
     void FCFS()

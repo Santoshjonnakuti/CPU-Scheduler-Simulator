@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// Process Class members Data type
 struct ProcessDetails_t
 {
     int processId;
