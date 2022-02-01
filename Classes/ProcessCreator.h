@@ -7,6 +7,7 @@
 #include <time.h>
 #include "../Utils/DataTypes.h"
 #include "Process.h"
+#include "Scheduler.h"
 
 using namespace std;
 
@@ -29,8 +30,8 @@ public:
         for (int i = 0; i < noOfProcesses; i++)
         {
             PD.processId = i + 1;
-            PD.arrivalTime = 1 + rand() % 9;
-            PD.burstTime = 1 + rand() % 9;
+            PD.arrivalTime = 1 + rand() % 1000;
+            PD.burstTime = 1 + rand() % 1000;
             A[i] = new Process(PD);
         }
         for (int i = 0; i < noOfProcesses; i++)
@@ -45,6 +46,7 @@ public:
             A[i]->printProcessDetails();
         }
     }
+    friend class Scheduler;
 };
 
 #endif

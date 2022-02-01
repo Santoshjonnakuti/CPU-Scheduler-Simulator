@@ -2,6 +2,7 @@
 #include <string>
 #include "./Classes/Process.h"
 #include "./Classes/ProcessCreator.h"
+#include "./Classes/Scheduler.h"
 #include "./Utils/Messages.h"
 
 using namespace std;
@@ -24,5 +25,6 @@ int main()
     takeInput("Enter Number Of Process : ");
     cin >> numberOfProcesses;
     Process_Creator PC(numberOfProcesses);
+    Scheduler Sc(PC);
     return 0;
 }
