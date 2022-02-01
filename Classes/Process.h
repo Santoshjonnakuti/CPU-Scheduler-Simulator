@@ -20,26 +20,26 @@ public:
              << endl;
     }
     // parameterized Constructor
-    Process(int processId, int arivalTime, int burstTime, int completionTime, int turnAroundTime, int waitingTime, int responseTime)
+    Process(ProcessDetails_t PD)
     {
-        this->Data.processId = processId;
-        this->Data.arrivalTime = arivalTime;
-        this->Data.burstTime = burstTime;
-        this->Data.completionTime = completionTime;
-        this->Data.turnAroundTime = turnAroundTime;
-        this->Data.waitingTime = waitingTime;
-        this->Data.responseTime = responseTime;
+        this->Data.processId = PD.processId;
+        this->Data.arrivalTime = PD.arrivalTime;
+        this->Data.burstTime = PD.burstTime;
+        this->Data.completionTime = PD.completionTime;
+        this->Data.turnAroundTime = PD.turnAroundTime;
+        this->Data.waitingTime = PD.waitingTime;
+        this->Data.responseTime = PD.responseTime;
     }
     // function to assign Data Members
-    void assignProcessDetails(int processId, int arivalTime, int burstTime, int completionTime, int turnAroundTime, int waitingTime, int responseTime)
+    void assignProcessDetails(ProcessDetails_t PD)
     {
-        this->Data.processId = processId;
-        this->Data.arrivalTime = arivalTime;
-        this->Data.burstTime = burstTime;
-        this->Data.completionTime = completionTime;
-        this->Data.turnAroundTime = turnAroundTime;
-        this->Data.waitingTime = waitingTime;
-        this->Data.responseTime = responseTime;
+        this->Data.processId = PD.processId;
+        this->Data.arrivalTime = PD.arrivalTime;
+        this->Data.burstTime = PD.burstTime;
+        this->Data.completionTime = PD.completionTime;
+        this->Data.turnAroundTime = PD.turnAroundTime;
+        this->Data.waitingTime = PD.waitingTime;
+        this->Data.responseTime = PD.responseTime;
     }
     // function to display Process Properties
     void printProcessDetails()

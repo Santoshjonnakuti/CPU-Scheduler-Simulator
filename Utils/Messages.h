@@ -27,6 +27,11 @@ void printInformation(string informationMessage)
     string information = "\033[1;34m" + informationMessage + "\033[0m\n";
     cout << information << endl;
 }
+void takeInput(string message)
+{
+    string msg = "\033[1;33m" + message + "\033[0m";
+    cout << msg;
+}
 void printProcessInformation(ProcessDetails_t Data)
 {
     printInformation("\n------------------------------Process Details------------------------------\n" +

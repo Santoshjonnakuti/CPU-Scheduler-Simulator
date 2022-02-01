@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include "./Classes/Process.h"
+#include "./Classes/ProcessCreator.h"
+#include "./Utils/Messages.h"
 
 using namespace std;
 
@@ -8,17 +10,19 @@ int main()
 {
     int simulationTime;
     int timeQuantum;
+    int numberOfProcesses;
     string schedulingAlgorithm;
-    cout << "Enter Simulation Time [in ms]: ";
+    takeInput("Enter Simulation Time [in ms]: ");
     cin >> simulationTime;
-    cout << "Enter Scheduling Algorithm [FCFS/SRTF/RR]: ";
+    takeInput("Enter Scheduling Algorithm [FCFS/SRTF/RR]: ");
     cin >> schedulingAlgorithm;
     if (!schedulingAlgorithm.compare("RR"))
     {
-        cout << "Enter Time Quantum [in ms]: ";
+        takeInput("Enter Time Quantum [in ms]: ");
         cin >> timeQuantum;
     }
-    Process P(1, 2, 3, 4, 5, 6, 7);
-    P.printProcessDetails();
+    takeInput("Enter Number Of Process : ");
+    cin >> numberOfProcesses;
+    Process_Creator PC(numberOfProcesses);
     return 0;
 }
