@@ -17,6 +17,7 @@ class Process
     int waitingTime;
     int responseTime;
     // default Constructor
+public:
     Process()
     {
         cout << "\nDefault Constructor Called\n"
@@ -48,13 +49,13 @@ class Process
     void printProcessDetails()
     {
         cout << "------------------------------Process Details------------------------------" +
-                    string("\nProcess ID               : ") + to_string(processId) +
-                    "\nProcess Arrival Time     : " + to_string(arrivalTime) +
-                    "\nProcess Burst Time       : " + to_string(burstTime);
-        "\nProcess Completion Time  : " + to_string(completionTime);
-        "\nProcess Turn Around Time : " + to_string(turnAroundTime);
-        "\nProcess Waiting Time     : " + to_string(waitingTime);
-        "\nProcess Response Time    : " + to_string(responseTime);
+                    string("\nProcess ID                 : ") + to_string(processId) +
+                    "\nProcess Arrival Time       : " + to_string(arrivalTime) +
+                    "\nProcess Burst Time         : " + to_string(burstTime) +
+                    "\nProcess Completion Time    : " + to_string(completionTime) +
+                    "\nProcess Turn Around Time   : " + to_string(turnAroundTime) +
+                    "\nProcess Waiting Time       : " + to_string(waitingTime) +
+                    "\nProcess Response Time      : " + to_string(responseTime);
     }
 };
 #endif
