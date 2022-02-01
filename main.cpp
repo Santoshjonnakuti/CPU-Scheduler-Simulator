@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+#include "../Classes/Process.h"
+
 using namespace std;
 
 int main()
@@ -17,6 +19,7 @@ int main()
         cout << "Enter Time Quantum [in ms]: ";
         cin >> timeQuantum;
     }
+    Process P();
 
     return 0;
 }
