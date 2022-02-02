@@ -2,6 +2,7 @@
 #define SCHEDULER_H
 
 #include <iostream>
+#include <bits/stdc++.h>
 #include "Process.h"
 #include "ProcessCreator.h"
 

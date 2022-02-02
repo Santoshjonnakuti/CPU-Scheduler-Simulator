@@ -7,14 +7,13 @@
 #include <time.h>
 #include "../Utils/DataTypes.h"
 #include "Process.h"
-#include "Scheduler.h"
 
 using namespace std;
 
 class Process_Creator
 {
     // Array of Processes
-    Process **A;
+    Process **Processes;
     int noOfProcesses;
 
 public:
@@ -27,19 +26,23 @@ public:
         PD.waitingTime = 0;
         PD.responseTime = 0;
         // Allocates Memory for the Array
-        A = (Process **)malloc(noOfProcesses * sizeof(Process *));
+        Processes = (Process **)malloc(noOfProcesses * sizeof(Process *));
         // Initializing the arrival time and burst time with some random values inbetween 1 and 1000
         srand(time(0));
+        int prevAT = 0, preAT, preBT;
         for (int i = 0; i < noOfProcesses; i++)
         {
+            preAT = rand();
+            preBT = rand();
             PD.processId = i + 1;
-            PD.arrivalTime = 1 + rand() % 1000;
-            PD.burstTime = 1 + rand() % 1000;
-            A[i] = new Process(PD);
+            PD.arrivalTime = 1 + prevAT + preAT % 1000;
+            PD.burstTime = 1 + preBT % 1000;
+            Processes[i] = new Process(PD);
+            prevAT = PD.arrivalTime;
         }
         for (int i = 0; i < noOfProcesses; i++)
         {
-            A[i]->printProcessDetails();
+            Processes[i]->printProcessDetails();
         }
     }
     // to print all Processes Details
@@ -47,7 +50,7 @@ public:
     {
         for (int i = 0; i < noOfProcesses; i++)
         {
-            A[i]->printProcessDetails();
+            Processes[i]->printProcessDetails();
         }
     }
     // Scheduler as Friend class for Process_Creator
