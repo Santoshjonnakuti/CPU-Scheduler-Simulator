@@ -56,6 +56,9 @@ public:
     // Scheduler as Friend class for Process_Creator
     // Scheduler can access the private members of this class
     friend class Scheduler;
+    friend class FCFSScheduler;
+    friend class SRTFScheduler;
+    friend class RRScheduler;
 };
 
 #endif

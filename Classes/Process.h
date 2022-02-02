@@ -49,5 +49,8 @@ public:
     int getArrivalTime() const { return Data.arrivalTime; }
     int getBurstTime() const { return Data.burstTime; }
     friend class Scheduler;
+    friend class FCFSScheduler;
+    friend class SRTFScheduler;
+    friend class RRScheduler;
 };
 #endif
