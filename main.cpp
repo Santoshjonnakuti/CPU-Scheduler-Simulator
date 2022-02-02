@@ -26,5 +26,6 @@ int main()
     cin >> numberOfProcesses;
     Process_Creator PC(numberOfProcesses);
     Scheduler Sc(PC);
+    Sc.FCFS();
     return 0;
 }

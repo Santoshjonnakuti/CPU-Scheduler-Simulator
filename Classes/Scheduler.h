@@ -7,21 +7,36 @@
 #include "ProcessCreator.h"
 
 using namespace std;
-
+class Comparator
+{
+public:
+    int operator()(const Process &p1, const Process &p2)
+    {
+        return p1.getBurstTime() > p2.getBurstTime();
+    }
+};
 class Scheduler
 {
-    // Array of Processes
-    Process **readyQueue;
+    // Min Heap
+    // ready Queue
+    priority_queue<Process, vector<Process>, Comparator> readyQueue;
 
 public:
     Scheduler(Process_Creator &PC)
     {
-        // Allocating Memory to the Processes Array
-        readyQueue = (Process **)malloc(PC.noOfProcesses * sizeof(Process *));
+        for (int i = 0; i < PC.noOfProcesses; i++)
+        {
+            readyQueue.push(Process(PC.Processes[i]->Data));
+        }
     }
     void FCFS()
     {
-        // First Come First Serve Algorithm
+        while (readyQueue.empty() == false)
+        {
+            Process P = readyQueue.top();
+            P.printProcessDetails();
+            readyQueue.pop();
+        }
     }
     void SRTF()
     {
@@ -32,5 +47,4 @@ public:
         // Round Robin Algorithm
     }
 };
-
 #endif
