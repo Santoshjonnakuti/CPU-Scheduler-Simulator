@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <unistd.h>
 #include "ProcessCreator.h"
 #include "Scheduler.h"
 #include "FCFS.h"
@@ -33,7 +34,13 @@ public:
         if (schedulingAlgorithm.compare("FCFS") == 0)
         {
             FCFSScheduler Fcfs(PC);
-            Fcfs.FCFS();
+            for (int i = 0; i < simulationTime; i++)
+            {
+                cout << "\nIteration is " << i << endl;
+                // sleep(1);
+                Fcfs.FCFS(PC, i);
+            }
+
             return;
         }
         else if (schedulingAlgorithm.compare("SRTF") == 0)

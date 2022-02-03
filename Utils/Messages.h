@@ -43,4 +43,8 @@ void printProcessInformation(ProcessDetails_t Data)
                      "\nProcess Waiting Time       : " + to_string(Data.waitingTime) +
                      "\nProcess Response Time      : " + to_string(Data.responseTime) + "\n");
 }
+void printProcessIdATBT(ProcessDetails_t Data)
+{
+    printInformation("\n" + to_string(Data.processId) + " " + to_string(Data.arrivalTime) + " " + to_string(Data.burstTime));
+}
 #endif
