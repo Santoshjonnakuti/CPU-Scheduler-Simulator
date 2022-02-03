@@ -23,18 +23,41 @@ class SRTFScheduler
 public:
     SRTFScheduler(Process_Creator &PC)
     {
+        // Constructor of the Class
+    }
+    void checkProcessesArrival(Process_Creator &PC, int t)
+    {
         for (int i = 0; i < PC.noOfProcesses; i++)
         {
-            readyQueue.push(Process(PC.Processes[i]->Data));
+            if (PC.Processes[i]->Data.arrivalTime == t)
+            {
+                readyQueue.push(Process(PC.Processes[i]->Data));
+                cout << "t and AT Matched" << PC.Processes[i]->Data.arrivalTime << endl;
+            }
         }
     }
-    void SRTF()
+    void SRTF(Process_Creator &PC, int t)
     {
-        while (readyQueue.empty() == false)
+        checkProcessesArrival(PC, t);
+        if (readyQueue.empty() == false)
         {
             Process P = readyQueue.top();
-            P.printProcessDetails();
-            readyQueue.pop();
+            if (P.Data.arrivalTime != t)
+            {
+                P.Data.burstTime -= 1;
+                if (P.Data.burstTime != 0)
+                {
+                    readyQueue.pop();
+                    readyQueue.push(Process(P.Data));
+                }
+                else
+                {
+                    readyQueue.pop();
+                    printWarningMessage("\nProcess Completed...\n");
+                }
+                // P.printProcessDetails();
+                P.printPidATBT();
+            }
         }
     }
 };

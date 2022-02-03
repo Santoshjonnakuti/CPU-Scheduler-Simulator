@@ -37,16 +37,18 @@ public:
             for (int i = 0; i < simulationTime; i++)
             {
                 cout << "\nIteration is " << i << endl;
-                // sleep(1);
                 Fcfs.FCFS(PC, i);
             }
-
             return;
         }
         else if (schedulingAlgorithm.compare("SRTF") == 0)
         {
             SRTFScheduler Srtf(PC);
-            Srtf.SRTF();
+            for (int i = 0; i < simulationTime; i++)
+            {
+                cout << "\nIteration is " << i << endl;
+                Srtf.SRTF(PC, i);
+            }
             return;
         }
         else
