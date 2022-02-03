@@ -4,6 +4,7 @@
 #include "./Classes/ProcessCreator.h"
 #include "./Classes/Scheduler.h"
 #include "./Utils/Messages.h"
+#include "./Classes/Simulator.h"
 
 using namespace std;
 
@@ -24,8 +25,7 @@ int main()
     }
     takeInput("Enter Number Of Process : ");
     cin >> numberOfProcesses;
-    Process_Creator PC(numberOfProcesses);
-    Scheduler Sc(PC);
-    Sc.FCFS();
+    Simulator Simulation(simulationTime, timeQuantum, numberOfProcesses, schedulingAlgorithm);
+    Simulation.start();
     return 0;
 }

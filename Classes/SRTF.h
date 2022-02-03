@@ -12,7 +12,7 @@ class SRTFComparator
 public:
     int operator()(const Process &p1, const Process &p2)
     {
-        return p1.getArrivalTime() > p2.getArrivalTime();
+        return p1.getBurstTime() > p2.getBurstTime();
     }
 };
 class SRTFScheduler
