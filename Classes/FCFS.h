@@ -55,6 +55,7 @@ public:
             {
                 writeDataToStatusFile(P.Data, "Running", t);
                 k = 1;
+                continue;
             }
             writeDataToStatusFile(P.Data, "Waiting", t);
         }
@@ -72,7 +73,7 @@ public:
         if (readyQueue.empty() == false)
         {
             Process P = readyQueue.top();
-            if (P.Data.burstTime != -1)
+            if (P.Data.burstTime != 0)
             {
                 writeStatusFile("Running", t);
                 P.Data.burstTime -= 1;
@@ -83,6 +84,13 @@ public:
             {
                 writeStatusFile("Exit", t);
                 readyQueue.pop();
+                if (readyQueue.empty() == false)
+                {
+                    P = readyQueue.top();
+                    P.Data.burstTime -= 1;
+                    readyQueue.pop();
+                    readyQueue.push(Process(P.Data));
+                }
                 printWarningMessage("\nProcess Completed...\n");
             }
             // P.printProcessDetails();
