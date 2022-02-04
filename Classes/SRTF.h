@@ -5,6 +5,7 @@
 #include <bits/stdc++.h>
 #include "Process.h"
 #include "ProcessCreator.h"
+#include "../Utils/FileHandling.h"
 
 using namespace std;
 class SRTFComparator
@@ -36,8 +37,17 @@ public:
             }
         }
     }
+    void writeStatusFile(const char status[], int t)
+    {
+        Process P = readyQueue.top();
+        writeDataToStatusFile(P.Data, status, t);
+        return;
+    }
     void SRTF(Process_Creator &PC, int t)
     {
+        char const *A = "Arrived";
+        char const *R = "Running";
+        char const *E = "Exit";
         checkProcessesArrival(PC, t);
         if (readyQueue.empty() == false)
         {
@@ -47,16 +57,22 @@ public:
                 P.Data.burstTime -= 1;
                 if (P.Data.burstTime != 0)
                 {
+                    writeStatusFile(R, t);
                     readyQueue.pop();
                     readyQueue.push(Process(P.Data));
                 }
                 else
                 {
+                    writeStatusFile(E, t);
                     readyQueue.pop();
                     printWarningMessage("\nProcess Completed...\n");
                 }
                 // P.printProcessDetails();
                 P.printPidATBT();
+            }
+            else
+            {
+                writeStatusFile(A, t);
             }
         }
     }
