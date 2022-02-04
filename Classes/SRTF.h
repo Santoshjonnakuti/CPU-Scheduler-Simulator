@@ -72,10 +72,10 @@ public:
         if (readyQueue.empty() == false)
         {
             Process P = readyQueue.top();
-            P.Data.burstTime -= 1;
             if (P.Data.burstTime != -1)
             {
                 writeStatusFile("Running", t);
+                P.Data.burstTime -= 1;
                 readyQueue.pop();
                 readyQueue.push(Process(P.Data));
             }
