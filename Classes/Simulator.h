@@ -53,8 +53,12 @@ public:
         }
         else
         {
-            RRScheduler Rr(PC);
-            Rr.RR();
+            RRScheduler Rr(PC, timeQuantum);
+            for (int i = 1; i <= simulationTime; i++)
+            {
+                cout << "\nIteration is " << i << endl;
+                Rr.RR(PC, i);
+            }
             return;
         }
     }
