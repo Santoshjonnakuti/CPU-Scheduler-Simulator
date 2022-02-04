@@ -33,47 +33,60 @@ public:
             if (PC.Processes[i]->Data.arrivalTime == t)
             {
                 readyQueue.push(Process(PC.Processes[i]->Data));
+                writeDataToStatusFile(PC.Processes[i]->Data, "Arrived", t);
                 cout << "t and AT Matched" << PC.Processes[i]->Data.arrivalTime << endl;
             }
         }
     }
     void writeStatusFile(const char status[], int t)
     {
+        priority_queue<Process, vector<Process>, SRTFComparator> dupReadyQueue;
         Process P = readyQueue.top();
+        dupReadyQueue.push(Process(P.Data));
+        readyQueue.pop();
         writeDataToStatusFile(P.Data, status, t);
+        int k = 0;
+        while (readyQueue.empty() == false)
+        {
+            Process P = readyQueue.top();
+            dupReadyQueue.push(Process(P.Data));
+            readyQueue.pop();
+            if (k == 0 && strcmp(status, "Exit") == 0)
+            {
+                writeDataToStatusFile(P.Data, "Running", t);
+                k = 1;
+            }
+            writeDataToStatusFile(P.Data, "Waiting", t);
+        }
+        while (dupReadyQueue.empty() == false)
+        {
+            Process P = readyQueue.top();
+            readyQueue.push(Process(P.Data));
+            dupReadyQueue.pop();
+        }
         return;
     }
     void SRTF(Process_Creator &PC, int t)
     {
-        char const *A = "Arrived";
-        char const *R = "Running";
-        char const *E = "Exit";
         checkProcessesArrival(PC, t);
         if (readyQueue.empty() == false)
         {
             Process P = readyQueue.top();
-            if (P.Data.arrivalTime != t)
+            P.Data.burstTime -= 1;
+            if (P.Data.burstTime != -1)
             {
-                P.Data.burstTime -= 1;
-                if (P.Data.burstTime != 0)
-                {
-                    writeStatusFile(R, t);
-                    readyQueue.pop();
-                    readyQueue.push(Process(P.Data));
-                }
-                else
-                {
-                    writeStatusFile(E, t);
-                    readyQueue.pop();
-                    printWarningMessage("\nProcess Completed...\n");
-                }
-                // P.printProcessDetails();
-                P.printPidATBT();
+                writeStatusFile("Running", t);
+                readyQueue.pop();
+                readyQueue.push(Process(P.Data));
             }
             else
             {
-                writeStatusFile(A, t);
+                writeStatusFile("Exit", t);
+                readyQueue.pop();
+                printWarningMessage("\nProcess Completed...\n");
             }
+            // P.printProcessDetails();
+            P.printPidATBT();
         }
     }
 };

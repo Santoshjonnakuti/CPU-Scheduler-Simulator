@@ -34,7 +34,7 @@ public:
         if (schedulingAlgorithm.compare("FCFS") == 0)
         {
             FCFSScheduler Fcfs(PC);
-            for (int i = 0; i < simulationTime; i++)
+            for (int i = 1; i <= simulationTime; i++)
             {
                 cout << "\nIteration is " << i << endl;
                 Fcfs.FCFS(PC, i);
@@ -44,7 +44,7 @@ public:
         else if (schedulingAlgorithm.compare("SRTF") == 0)
         {
             SRTFScheduler Srtf(PC);
-            for (int i = 0; i < simulationTime; i++)
+            for (int i = 1; i <= simulationTime; i++)
             {
                 cout << "\nIteration is " << i << endl;
                 Srtf.SRTF(PC, i);
