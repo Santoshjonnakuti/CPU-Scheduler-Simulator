@@ -5,6 +5,10 @@
 #include <bits/stdc++.h>
 #include "Process.h"
 #include "ProcessCreator.h"
+#include "FCFS.h"
+#include "SRTF.h"
+#include "RR.h"
+#include "../Utils/FileHandling.h"
 
 using namespace std;
 class Comparator
@@ -22,29 +26,56 @@ class Scheduler
     priority_queue<Process, vector<Process>, Comparator> readyQueue;
 
 public:
-    Scheduler(Process_Creator &PC)
+    void ScheduleProcesses(Process_Creator &PC, int simulationTime, int timeQuantum, string schedulingAlgorithm)
     {
-        for (int i = 0; i < PC.noOfProcesses; i++)
+        if (schedulingAlgorithm.compare("FCFS") == 0)
         {
-            readyQueue.push(Process(PC.Processes[i]->Data));
+            FCFSScheduler Fcfs(PC);
+            for (int i = 1; i <= simulationTime; i++)
+            {
+                cout << "\nIteration is " << i << endl;
+                Fcfs.FCFS(PC, i);
+            }
+            if (Fcfs.readyQueue.empty() == false)
+            {
+                Process P = Fcfs.readyQueue.top();
+                writeDataToProcessesFile(P.Data);
+                Fcfs.readyQueue.pop();
+            }
+            return;
         }
-    }
-    void FCFS()
-    {
-        while (readyQueue.empty() == false)
+        else if (schedulingAlgorithm.compare("SRTF") == 0)
         {
-            Process P = readyQueue.top();
-            P.printProcessDetails();
-            readyQueue.pop();
+            SRTFScheduler Srtf(PC);
+            for (int i = 1; i <= simulationTime; i++)
+            {
+                cout << "\nIteration is " << i << endl;
+                Srtf.SRTF(PC, i);
+            }
+            if (Srtf.readyQueue.empty() == false)
+            {
+                Process P = Srtf.readyQueue.top();
+                writeDataToProcessesFile(P.Data);
+                Srtf.readyQueue.pop();
+            }
+            return;
         }
-    }
-    void SRTF()
-    {
-        // Shortest Remaining Time First Algorithm
-    }
-    void RR()
-    {
-        // Round Robin Algorithm
+        else
+        {
+            RRScheduler Rr(PC, timeQuantum);
+            for (int i = 1; i <= simulationTime; i++)
+            {
+                cout << "\nIteration is " << i << endl;
+                Rr.RR(PC, i);
+            }
+            if (Rr.readyQueue.empty() == false)
+            {
+                Process P = Rr.readyQueue.top();
+                writeDataToProcessesFile(P.Data);
+                Rr.readyQueue.pop();
+            }
+            return;
+        }
     }
 };
 #endif

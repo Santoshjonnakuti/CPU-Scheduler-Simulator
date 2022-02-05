@@ -44,45 +44,8 @@ public:
     }
     void writeStatusFile(const char status[], int t)
     {
-        priority_queue<Process, vector<Process>, SRTFComparator> dupReadyQueue;
-        priority_queue<Process, vector<Process>, SRTFComparator> dupReadyQueue1;
         Process P = readyQueue.top();
-        dupReadyQueue.push(Process(P.Data));
-        readyQueue.pop();
         writeDataToStatusFile(P.Data, status, t);
-        int k = 0;
-        while (readyQueue.empty() == false)
-        {
-            Process P = readyQueue.top();
-            dupReadyQueue.push(Process(P.Data));
-            readyQueue.pop();
-            if (k == 0 && strcmp(status, "Exit") == 0)
-            {
-                writeDataToStatusFile(P.Data, "Running", t);
-                k = 1;
-                continue;
-            }
-            writeDataToStatusFile(P.Data, "Waiting", t);
-        }
-        while (dupReadyQueue.empty() == false)
-        {
-            Process P = readyQueue.top();
-            readyQueue.push(Process(P.Data));
-            dupReadyQueue.pop();
-        }
-        while (readyQueue1.empty() == false)
-        {
-            Process P = readyQueue1.top();
-            dupReadyQueue1.push(Process(P.Data));
-            readyQueue1.pop();
-            writeDataToStatusFile(P.Data, "Waiting", t);
-        }
-        while (dupReadyQueue1.empty() == false)
-        {
-            Process P = readyQueue1.top();
-            readyQueue1.push(Process(P.Data));
-            dupReadyQueue1.pop();
-        }
         return;
     }
     void writeProcessesFile(ProcessDetails_t Data)
@@ -153,6 +116,6 @@ public:
             P.printPidATBT();
         }
     }
-    friend class Simulator;
+    friend class Scheduler;
 };
 #endif

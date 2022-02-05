@@ -43,6 +43,11 @@ public:
         this->Data.waitingTime = PD.waitingTime;
         this->Data.responseTime = PD.responseTime;
     }
+    void runOneUnit()
+    {
+        Data.burstTime = Data.burstTime - 1;
+        return;
+    }
     // function to display Process Properties
     void printProcessDetails()
     {

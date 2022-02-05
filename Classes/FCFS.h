@@ -40,31 +40,8 @@ public:
     }
     void writeStatusFile(const char status[], int t)
     {
-        priority_queue<Process, vector<Process>, FCFSComparator> dupReadyQueue;
         Process P = readyQueue.top();
-        dupReadyQueue.push(Process(P.Data));
-        readyQueue.pop();
         writeDataToStatusFile(P.Data, status, t);
-        int k = 0;
-        while (readyQueue.empty() == false)
-        {
-            Process P = readyQueue.top();
-            dupReadyQueue.push(Process(P.Data));
-            readyQueue.pop();
-            if (k == 0 && strcmp(status, "Exit") == 0)
-            {
-                writeDataToStatusFile(P.Data, "Running", t);
-                k = 1;
-                continue;
-            }
-            writeDataToStatusFile(P.Data, "Waiting", t);
-        }
-        while (dupReadyQueue.empty() == false)
-        {
-            Process P = readyQueue.top();
-            readyQueue.push(Process(P.Data));
-            dupReadyQueue.pop();
-        }
         return;
     }
     void writeProcessesFile(ProcessDetails_t Data)
@@ -100,6 +77,7 @@ public:
                 {
                     P = readyQueue.top();
                     P.Data.burstTime -= 1;
+                    writeStatusFile("Running", t);
                     if (P.Data.responseTime == -1)
                     {
                         P.Data.responseTime = t - P.Data.arrivalTime;
@@ -113,6 +91,6 @@ public:
             P.printPidATBT();
         }
     }
-    friend class Simulator;
+    friend class Scheduler;
 };
 #endif
