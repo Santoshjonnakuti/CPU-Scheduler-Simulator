@@ -19,7 +19,7 @@
 6. After that Process will be popped out from the ready Queue and then next process state will be running.
 8. If its Burst time is greater than 0 then Running will be written to the status.txt.
 9. If the Simulation Time Stops then Program Exits.
-10. Its a Non-Preemptive Algorithm.
+10. It's a Non-Preemptive Algorithm.
 11. So, once Processes is running it will exit only after completion.
 
 #### SRTF Algorithm
@@ -32,7 +32,7 @@
 6. After that Process will be popped out from the ready Queue and then next process state will be running.
 8. If its Burst time is greater than 0 then Running will be written to the status.txt.
 9. If the Simulation Time Stops then Program Exits.
-10. Its a Preemptive Algorithm.
+10. It's a Preemptive Algorithm.
 11. So, once Process is running, if another process will less burst came to ready state then this process will be preepted and second process will be set as running.
 
 
@@ -46,5 +46,5 @@
 6. After that Process will be popped out from the ready Queue and then next process state will be running.
 8. If its Burst time is greater than 0 then Running will be written to the status.txt.
 9. If the Simulation Time Stops then Program Exits.
-10. Its a Preemptive Algorithm.
+10. It's a Preemptive Algorithm.
 11. So, once Process is running, it will run for time Quantum Units and after that Process will  be Preepted and CPU will be given to the Next Process in the Queue.
