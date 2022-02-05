@@ -85,6 +85,10 @@ public:
         }
         return;
     }
+    void writeProcessesFile(ProcessDetails_t Data)
+    {
+        writeDataToProcessesFile(Data);
+    }
     void RR(Process_Creator PC, int t)
     {
         checkProcessesArrival(PC, t);
@@ -121,6 +125,10 @@ public:
             {
                 writeStatusFile("Running", t);
                 P.Data.burstTime -= 1;
+                if (P.Data.responseTime == -1)
+                {
+                    P.Data.responseTime = t - P.Data.arrivalTime;
+                }
                 readyQueue.pop();
                 readyQueue.push(Process(P.Data));
             }
@@ -132,6 +140,10 @@ public:
                 {
                     P = readyQueue.top();
                     P.Data.burstTime -= 1;
+                    if (P.Data.responseTime == -1)
+                    {
+                        P.Data.responseTime = t - P.Data.arrivalTime;
+                    }
                     readyQueue.pop();
                     readyQueue.push(Process(P.Data));
                 }
@@ -141,5 +153,6 @@ public:
             P.printPidATBT();
         }
     }
+    friend class Simulator;
 };
 #endif
