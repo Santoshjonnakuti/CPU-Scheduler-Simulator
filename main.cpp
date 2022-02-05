@@ -27,6 +27,7 @@ int main()
     takeInput("Enter Number Of Process : ");
     cin >> numberOfProcesses;
     writeHeadersToStatusFile();
+    writeHeadersToProcessesFile();
     Simulator Simulation(simulationTime, timeQuantum, numberOfProcesses, schedulingAlgorithm);
     Simulation.start();
     return 0;

@@ -25,6 +25,7 @@ public:
         this->Data.processId = PD.processId;
         this->Data.arrivalTime = PD.arrivalTime;
         this->Data.burstTime = PD.burstTime;
+        this->Data.burstTime1 = PD.burstTime1;
         this->Data.completionTime = PD.completionTime;
         this->Data.turnAroundTime = PD.turnAroundTime;
         this->Data.waitingTime = PD.waitingTime;
@@ -36,6 +37,7 @@ public:
         this->Data.processId = PD.processId;
         this->Data.arrivalTime = PD.arrivalTime;
         this->Data.burstTime = PD.burstTime;
+        this->Data.burstTime1 = PD.burstTime1;
         this->Data.completionTime = PD.completionTime;
         this->Data.turnAroundTime = PD.turnAroundTime;
         this->Data.waitingTime = PD.waitingTime;
@@ -53,6 +55,7 @@ public:
     int getArrivalTime() const { return Data.arrivalTime; }
     int getBurstTime() const { return Data.burstTime; }
     friend class Scheduler;
+    friend class Simulator;
     friend class FCFSScheduler;
     friend class SRTFScheduler;
     friend class RRScheduler;

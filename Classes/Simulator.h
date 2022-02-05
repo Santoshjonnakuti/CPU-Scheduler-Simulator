@@ -9,6 +9,7 @@
 #include "FCFS.h"
 #include "SRTF.h"
 #include "RR.h"
+#include "../Utils/FileHandling.h"
 
 using namespace std;
 
@@ -38,6 +39,12 @@ public:
             {
                 cout << "\nIteration is " << i << endl;
                 Fcfs.FCFS(PC, i);
+            }
+            if (Fcfs.readyQueue.empty() == false)
+            {
+                Process P = Fcfs.readyQueue.top();
+                writeDataToProcessesFile(P.Data);
+                Fcfs.readyQueue.pop();
             }
             return;
         }

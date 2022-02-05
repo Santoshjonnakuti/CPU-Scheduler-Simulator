@@ -21,10 +21,10 @@ public:
     {
         this->noOfProcesses = noOfProcesses;
         ProcessDetails_t PD;
-        PD.completionTime = 0;
-        PD.turnAroundTime = 0;
-        PD.waitingTime = 0;
-        PD.responseTime = 0;
+        PD.completionTime = -1;
+        PD.turnAroundTime = -1;
+        PD.waitingTime = -1;
+        PD.responseTime = -1;
         // Allocates Memory for the Array
         Processes = (Process **)malloc(noOfProcesses * sizeof(Process *));
         // Initializing the arrival time and burst time with some random values inbetween 1 and 1000
@@ -37,6 +37,7 @@ public:
             PD.processId = i + 1;
             PD.arrivalTime = 1 + prevAT + preAT % 1000;
             PD.burstTime = 1 + preBT % 1000;
+            PD.burstTime1 = PD.burstTime;
             Processes[i] = new Process(PD);
             prevAT = PD.arrivalTime;
         }

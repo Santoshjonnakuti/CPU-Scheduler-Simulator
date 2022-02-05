@@ -12,6 +12,7 @@ struct ProcessDetails_t
     int processId;
     int arrivalTime;
     int burstTime;
+    int burstTime1;
     int completionTime;
     int turnAroundTime;
     int waitingTime;
