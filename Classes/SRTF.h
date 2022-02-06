@@ -13,6 +13,14 @@ class SRTFComparator
 public:
     int operator()(const Process &p1, const Process &p2)
     {
+        if (p1.getBurstTime() == p2.getBurstTime())
+        {
+            if (p1.getArrivalTime() == p2.getArrivalTime())
+            {
+                return p1.getProcessId() > p2.getProcessId();
+            }
+            return p1.getArrivalTime() > p2.getArrivalTime();
+        }
         return p1.getBurstTime() > p2.getBurstTime();
     }
 };
@@ -76,6 +84,7 @@ public:
                 if (readyQueue.empty() == false)
                 {
                     P = readyQueue.top();
+                    writeStatusFile("Running", t);
                     P.Data.burstTime -= 1;
                     if (P.Data.responseTime == -1)
                     {

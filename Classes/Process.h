@@ -57,6 +57,7 @@ public:
     {
         printProcessIdATBT(Data);
     }
+    int getProcessId() const { return Data.processId; }
     int getArrivalTime() const { return Data.arrivalTime; }
     int getBurstTime() const { return Data.burstTime; }
     friend class Scheduler;

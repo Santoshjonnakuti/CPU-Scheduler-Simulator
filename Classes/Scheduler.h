@@ -36,7 +36,7 @@ public:
                 cout << "\nIteration is " << i << endl;
                 Fcfs.FCFS(PC, i);
             }
-            if (Fcfs.readyQueue.empty() == false)
+            while (Fcfs.readyQueue.empty() == false)
             {
                 Process P = Fcfs.readyQueue.top();
                 writeDataToProcessesFile(P.Data);
@@ -52,7 +52,7 @@ public:
                 cout << "\nIteration is " << i << endl;
                 Srtf.SRTF(PC, i);
             }
-            if (Srtf.readyQueue.empty() == false)
+            while (Srtf.readyQueue.empty() == false)
             {
                 Process P = Srtf.readyQueue.top();
                 writeDataToProcessesFile(P.Data);
@@ -68,7 +68,7 @@ public:
                 cout << "\nIteration is " << i << endl;
                 Rr.RR(PC, i);
             }
-            if (Rr.readyQueue.empty() == false)
+            while (Rr.readyQueue.empty() == false)
             {
                 Process P = Rr.readyQueue.top();
                 writeDataToProcessesFile(P.Data);

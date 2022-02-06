@@ -35,8 +35,8 @@ public:
             preAT = rand();
             preBT = rand();
             PD.processId = i + 1;
-            PD.arrivalTime = 1 + prevAT + preAT % 1000;
-            PD.burstTime = 1 + preBT % 1000;
+            PD.arrivalTime = 1 + preAT % 100;
+            PD.burstTime = 1 + preBT % 100;
             PD.burstTime1 = PD.burstTime;
             Processes[i] = new Process(PD);
             prevAT = PD.arrivalTime;
