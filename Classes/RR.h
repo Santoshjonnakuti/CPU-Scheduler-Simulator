@@ -102,6 +102,10 @@ public:
             else
             {
                 writeStatusFile("Exit", t);
+                P.Data.completionTime = t;
+                P.Data.turnAroundTime = P.Data.completionTime - P.Data.arrivalTime;
+                P.Data.waitingTime = P.Data.turnAroundTime - P.Data.burstTime1;
+                writeProcessesFile(P.Data);
                 readyQueue.pop();
                 if (readyQueue.empty() == false)
                 {
